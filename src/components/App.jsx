@@ -17,6 +17,15 @@ function App() {
     setInputText("");
   }
 
+  function addItemEnter(event) {
+    if (event.keyCode === 13) {
+      setItems((prevItems) => {
+        return [...prevItems, inputText];
+      });
+      setInputText("");
+    }
+  }
+
   function deleteItem(id) {
     setItems((prevItems) => {
       return prevItems.filter((item, index) => {
@@ -31,7 +40,12 @@ function App() {
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input onChange={handleChange} type="text" value={inputText} />
+        <input
+          onChange={handleChange}
+          type="text"
+          value={inputText}
+          onKeyDown={addItemEnter}
+        />
         <button onClick={addItem}>
           <span>Add</span>
         </button>
